@@ -27,7 +27,7 @@ fetch(url, settings)
 io.on("connection", (socket) => {
   var total = io.engine.clientsCount;
   console.log(total);
-  socket.emit("news", { hello: "world" });
+  socket.emit("userCount", total);
   socket.on("my other event", (data) => {
     console.log(data);
   });
