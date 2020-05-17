@@ -17,4 +17,4 @@ fetch(url, settings)
     });
   });
 
-app.listen(3000, () => console.log("server started"));
+app.listen(3000, () => console.log("server started!"));
