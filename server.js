@@ -24,11 +24,13 @@ fetch(url, settings)
 
 // app.listen(port, () => console.log("server started on port!", port));
 
-io.on("connection", (socket) => {
-  var total = io.engine.clientsCount;
-  console.log(total);
-  socket.emit("userCount", total);
-  socket.on("my other event", (data) => {
-    console.log(data);
+var clients = 0;
+
+io.on("connection", function (socket) {
+  let total = io.engine.clientsCount;
+  io.sockets.emit("broadcast", total);
+  socket.on("disconnect", function () {
+    total = io.engine.clientsCount;
+    io.sockets.emit("broadcast", total);
   });
 });
