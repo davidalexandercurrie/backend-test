@@ -25,7 +25,8 @@ fetch(url, settings)
 // app.listen(port, () => console.log("server started on port!", port));
 
 io.on("connection", (socket) => {
-  socket.emit("news", { hello: "world" });
+  socket.emit("news", { hello: socketIO.engine.clientsCount });
+
   socket.on("my other event", (data) => {
     console.log(data);
   });
