@@ -6,7 +6,8 @@ const fs = require("fs");
 
 const fetch = require("node-fetch");
 
-server.listen(80);
+const port = process.env.PORT || 3000;
+server.listen(port);
 
 let url = "https://api.npoint.io/27499e1a2dc4c3170144";
 
@@ -21,8 +22,7 @@ fetch(url, settings)
     });
   });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log("server started on port!", port));
+// app.listen(port, () => console.log("server started on port!", port));
 
 io.on("connection", (socket) => {
   socket.emit("news", { hello: "world" });
