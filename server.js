@@ -9,7 +9,7 @@ const fetch = require("node-fetch");
 const port = process.env.PORT || 3000;
 server.listen(port);
 
-let url = "https://api.npoint.io/27499e1a2dc4c3170144";
+let url = "https://api.npoint.io/015816899430ca500cf1";
 
 let settings = { method: "Get" };
 
