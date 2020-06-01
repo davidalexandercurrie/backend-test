@@ -15,13 +15,6 @@ let url = "https://api.npoint.io/015816899430ca500cf1";
 
 let settings = { method: "Get" };
 
-setInterval(fetchData, 6000);
-// fetch(url, settings)
-//   .then((res) => res.json())
-//   .then((json) => {
-//     // do something with JSON
-
-//   });
 function fetchData() {
   fetch(url)
     .then(function (response) {
@@ -41,6 +34,7 @@ function fetchData() {
       //     but still, program the next one!
     });
 }
+fetchData();
 
 // app.listen(port, () => console.log("server started on port!", port));
 
