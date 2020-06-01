@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 var cors = require("cors");
-app.use(cors());
+
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const fs = require("fs");
@@ -22,13 +22,12 @@ function fetchData() {
     .then((res) => res.json())
     .then((json) => {
       // do something with JSON
-      jsonData = json;
+      app.use(cors());
+      app.get("/", (req, res) => {
+        res.status(200).json(json);
+      });
     });
 }
-
-app.get("/", (req, res) => {
-  if (jsonData !== undefined) res.status(200).json(jsonData);
-});
 
 // app.listen(port, () => console.log("server started on port!", port));
 
