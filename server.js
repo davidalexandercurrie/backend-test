@@ -17,14 +17,14 @@ let settings = { method: "Get" };
 
 setInterval(fetchData, 6000);
 
-fetch(url, settings)
-  .then((res) => res.json())
-  .then((json) => {
-    // do something with JSON
-    app.get("/", (req, res) => {
-      res.status(200).json(json);
+function fetchData() {
+  fetch(url, settings)
+    .then((res) => res.json())
+    .then((json) => {
+      // do something with JSON
+      jsonData = json;
     });
-  });
+}
 
 app.get("/", (req, res) => {
   if (jsonData !== undefined) res.status(200).json(jsonData);
