@@ -5,7 +5,7 @@ var cors = require("cors");
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const fs = require("fs");
-
+app.use(cors());
 const fetch = require("node-fetch");
 let jsonData;
 const port = process.env.PORT || 3000;
@@ -16,13 +16,20 @@ let url = "https://api.npoint.io/015816899430ca500cf1";
 let settings = { method: "Get" };
 
 setInterval(fetchData, 600000);
+fetch(url, settings)
+  .then((res) => res.json())
+  .then((json) => {
+    // do something with JSON
 
+    app.get("/", (req, res) => {
+      res.status(200).json(json);
+    });
+  });
 function fetchData() {
   fetch(url, settings)
     .then((res) => res.json())
     .then((json) => {
       // do something with JSON
-      app.use(cors());
       app.get("/", (req, res) => {
         res.status(200).json(json);
       });
