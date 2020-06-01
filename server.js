@@ -15,7 +15,7 @@ let url = "https://api.npoint.io/015816899430ca500cf1";
 
 let settings = { method: "Get" };
 
-setInterval(fetchData, 600000);
+setInterval(fetchData, 6000);
 fetch(url, settings)
   .then((res) => res.json())
   .then((json) => {
