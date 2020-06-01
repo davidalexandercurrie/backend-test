@@ -7,13 +7,15 @@ const io = require("socket.io")(server);
 const fs = require("fs");
 
 const fetch = require("node-fetch");
-
+let jsonData;
 const port = process.env.PORT || 3000;
 server.listen(port);
 
 let url = "https://api.npoint.io/015816899430ca500cf1";
 
 let settings = { method: "Get" };
+
+setInterval(fetchData, 6000);
 
 fetch(url, settings)
   .then((res) => res.json())
@@ -23,6 +25,10 @@ fetch(url, settings)
       res.status(200).json(json);
     });
   });
+
+app.get("/", (req, res) => {
+  if (jsonData !== undefined) res.status(200).json(jsonData);
+});
 
 // app.listen(port, () => console.log("server started on port!", port));
 
