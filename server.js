@@ -30,6 +30,7 @@ function fetchData() {
     .then((res) => res.json())
     .then((json) => {
       // do something with JSON
+      console.log(json);
       app.get("/", (req, res) => {
         res.status(200).json(json);
       });
