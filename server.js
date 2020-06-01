@@ -21,19 +21,24 @@ setInterval(fetchData, 6000);
 //   .then((json) => {
 //     // do something with JSON
 
-//     app.get("/", (req, res) => {
-//       res.status(200).json(json);
-//     });
 //   });
 function fetchData() {
-  fetch(url, settings)
-    .then((res) => res.json())
-    .then((json) => {
-      // do something with JSON
-      console.log(json);
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      // ... do something with your json ...
       app.get("/", (req, res) => {
         res.status(200).json(json);
       });
+      setTimeout(update, 1000); // <-- now that this call is done,
+      //     we can program the next one
+    })
+    .catch(function (err) {
+      // Error :(
+      setTimeout(update, 1000); // <-- there was a network problem,
+      //     but still, program the next one!
     });
 }
 
