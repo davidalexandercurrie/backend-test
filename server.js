@@ -15,14 +15,17 @@ let url = "https://api.npoint.io/015816899430ca500cf1";
 
 let settings = { method: "Get" };
 
-fetch(url, settings)
-  .then((res) => res.json())
-  .then((json) => {
-    // do something with JSON
-    app.get("/", (req, res) => {
-      res.status(200).json(json);
+setInterval(fetchData, 1000 * 60 * 60);
+function fetchData() {
+  fetch(url, settings)
+    .then((res) => res.json())
+    .then((json) => {
+      // do something with JSON
+      app.get("/", (req, res) => {
+        res.status(200).json(json);
+      });
     });
-  });
+}
 
 // app.listen(port, () => console.log("server started on port!", port));
 
